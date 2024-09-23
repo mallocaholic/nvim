@@ -14,6 +14,15 @@ return {
       local bg = '#' .. vim.api.nvim_get_hl_by_name('Normal', true).background
       local utils = require('lualine.utils.utils')
       local colors = {
+        green = utils.extract_color_from_hllist('fg', { 'MiniIconsGreen' }, '#000000'),
+        red = utils.extract_color_from_hllist('fg', { 'MiniIconsRed' }, '#000000'),
+        yellow = utils.extract_color_from_hllist('fg', { 'MiniIconsYellow' }, '#000000'),
+        blue = utils.extract_color_from_hllist('fg', { 'MiniIconsBlue' }, '#000000'),
+        purple = utils.extract_color_from_hllist('fg', { 'MiniIconsPurple' }, '#000000'),
+        cyan = utils.extract_color_from_hllist('fg', { 'MiniIconsCyan' }, '#000000'),
+        orange = utils.extract_color_from_hllist('fg', { 'MiniIconsOrange' }, '#000000'),
+        grey = utils.extract_color_from_hllist('fg', { 'MiniIconsGrey' }, '#000000'),
+
         insert = utils.extract_color_from_hllist('fg', { 'Removed' }, '#000000'),
         normal = utils.extract_color_from_hllist('fg', { 'Normal' }, '#000000'),
         replace = utils.extract_color_from_hllist('fg', { 'Number', 'Type' }, '#000000'),
@@ -67,15 +76,15 @@ return {
         },
         sections = {
           lualine_a = {
-            { nvim_icon, color = { fg = colors.icon } },
+            { nvim_icon, color = { fg = colors.green } },
           },
           lualine_b = {
             { 'mode' },
           },
           lualine_c = {
-            { 'filename', icon = { '', color = { fg = 'white' } }, filestatus = true, symbols = { modified = '', readonly = '', unnamed = '󰡯', newfile = '' }, path = 1, color = { fg = 'gray' } },
+            { 'filename', icon = { '', color = { fg = colors.grey } }, filestatus = true, symbols = { modified = '', readonly = '', unnamed = '󰡯', newfile = '' }, path = 1, color = { fg = colors.grey } },
             { 'filetype', icon_only = true, color = { bg = bg }, padding = { left = 1, right = 1 } },
-            { 'branch', icon = '', color = { fg = colors.git } },
+            { 'branch', icon = '', color = { fg = colors.blue } },
           },
           lualine_x = {
             { 'diagnostics', color = { bg = bg } },

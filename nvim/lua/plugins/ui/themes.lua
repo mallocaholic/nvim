@@ -1,11 +1,20 @@
 return {
+  -- {
+  --   'sho-87/kanagawa-paper.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  --   init = function()
+  --     vim.cmd('colorscheme kanagawa-paper')
+  --   end,
+  -- },
   {
-    'sho-87/kanagawa-paper.nvim',
+    "rose-pine/neovim",
+    name = "rose-pine",
     lazy = false,
     priority = 1000,
-    opts = {},
     init = function()
-      vim.cmd('colorscheme kanagawa-paper')
-    end,
+      vim.cmd("colorscheme rose-pine-dawn")
+    end
   },
 }
