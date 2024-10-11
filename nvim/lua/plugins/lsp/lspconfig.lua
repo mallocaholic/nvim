@@ -42,9 +42,14 @@ return {
 
       local lspconfig = require('lspconfig')
       local cmp_nvim_lsp = require('cmp_nvim_lsp')
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-      capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+      -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+      -- For slow python file performance
+      local capabilities = vim.tbl_deep_extend("force",
+        vim.lsp.protocol.make_client_capabilities(),
+        require('cmp_nvim_lsp').default_capabilities()
+      )
+      capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
       local on_attach = function(client, bufnr)
         local function buf_set_option(...)
@@ -139,14 +144,14 @@ return {
         'luvit-meta/library',
         -- It can also be a table with trigger words / mods
         -- Only load luvit types when the `vim.uv` word is found
-        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        { path = 'luvit-meta/library',        words = { 'vim%.uv' } },
         -- always load the LazyVim library
         'LazyVim',
         -- Only load the lazyvim library when the `LazyVim` global is found
-        { path = 'LazyVim', words = { 'LazyVim' } },
+        { path = 'LazyVim',                   words = { 'LazyVim' } },
         -- Load the wezterm types when the `wezterm` module is required
         -- Needs `justinsgithub/wezterm-types` to be installed
-        { path = 'wezterm-types', mods = { 'wezterm' } },
+        { path = 'wezterm-types',             mods = { 'wezterm' } },
         -- Load the xmake types when opening file named `xmake.lua`
         -- Needs `LelouchHe/xmake-luals-addon` to be installed
         { path = 'xmake-luals-addon/library', files = { 'xmake.lua' } },
